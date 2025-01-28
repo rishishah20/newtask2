@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiplication Table</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      height: 100vh;
+      background: wheat;
+    }
+    .output {
+      margin-top: 20px;
+    }
+
+    .rihsi{
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+
+    *,
+    *:before,
+    *:after{
+       padding: 0;
+       margin: 0;
+       box-sizing: border-box;
+    }
+.container{
+background-color: white;
+width: 500px;
+height: 350px;
+position: absolute;
+transform: translate(-50%,-50%);
+left: 50%;
+top: 110%;
+border-radius: 5px;
+padding: 20px;
+box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.image-container{
+position: relative;
+}
+
+img{
+position: relative;
+width: 460px;
+height: 280px;
+display: none;
+}
+
+.active{
+display: block;
+}
+
+#prev,#next{
+height: 40px;
+width: 40px;
+position: absolute;
+background-color: blue;
+color:white;
+margin: auto;
+top: 0;
+bottom: 0;
+border: none;
+border-radius: 3px;
+font-size: 18px;
+font-weight: bolder;
+  
+}
+
+#prev{
+left: 5px;
+}
+
+#next{
+right: 5px;
+}
+
+.input{
+    margin: 100px;
+    margin-top: 30%;
+}
+
+textarea {
+      width: 100%;
+      height: 100px;
+      margin-bottom: 10px;
+    }
+    .output {
+      margin-top: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      top: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>QUE 1</h1>
+  <div id="multiplication-table" class="output"></div>
+  <div id="sum-result" class="output"></div>
+
+  <script>
+    const tableDiv = document.getElementById('multiplication-table');
+    let tableOutput = '<h2>Multiplication Table for 5</h2>';
+    for (let i = 1; i <= 10; i++) {
+      tableOutput += `5 x ${i} = ${5 * i}<br>`;
+    }
+    tableDiv.innerHTML = tableOutput;
+    const sumDiv = document.getElementById('sum-result');
+    let sum = 0;
+    let number = 1;
+
+    while (number <= 10) {
+      sum += number;
+      number++;
+    }
+    sumDiv.innerHTML = `<h2>Sum of Numbers 1-10</h2>Total: ${sum}`;
+  </script>
+  <br>
+  <br>
+
+<div class="rishi">
+    <h2>QUE 2</h2>
+    <input type="text" id="email" placeholder="Enter your email address" />
+    <button onclick="validateEmail()">Submit</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+    function validateEmail() {
+      const emailInput = document.getElementById('email').value;
+      const resultDiv = document.getElementById('result');
+
+      if (isValidEmail(emailInput)) {
+        resultDiv.innerHTML = `<span style='color: green;'>Valid Email Address</span>`;
+      } else {
+        resultDiv.innerHTML = `<span style='color: red;'>Invalid Email Address</span>`;
+      }
+    }
+  </script>
+  <br>
+  <br>
+  
+<div class="container">
+    <h1>QUE 3</h1>
+    <div class="image-container">
+    <img src="car3.jpg" id="image1" class="active">
+    <img src="car4.jpg" id="image2">
+    <img src="car5.jpg" id="image3">
+    <img src="car6.jpg" id="image4">
+    <img src="car7.jpg" id="image5">
+    
+    
+     
+    </div>
+    <button id="prev" onclick="prev()"> &lt; </button>
+    <button id="next" onclick="next()"> &gt; </button>
+    </div>
+    </body>
+    <script>
+    const images = document.querySelectorAll(".image-container img");
+    let i = 0; 
+    let j = images.length; 
+    
+    function next(){
+    document.getElementById("image" + (i+1)).style.display="none"
+    
+    i = ( j + i + 1) % j;
+      
+    document.getElementById("image" + (i+1)).style.display="block"
+    } 
+    
+    function prev(){
+    document.getElementById("imaget" + (i+1)).style.display="none"
+    i = (j + i - 1) % j;
+     
+    document.getElementById("image" + (i+1)).style.display="block"
+    
+    }
+    
+    </script>
+<div class="input">
+<h1>QUE 4</h1>
+  <p>Enter a JSON string below and click "Parse" to see the result:</p>
+  <textarea id="jsonInput" placeholder="Enter JSON string here..."></textarea>
+  <button onclick="handleParse()">Submit</button>
+  <div id="output" class="output"></div>
+</div>
+
+  <script>
+    function parseJSON(jsonString) {
+      try {
+        const parsed = JSON.parse(jsonString);
+        return parsed;
+      } catch (error) {
+        return "Invalid JSON format";
+      }
+    }
+
+    function handleParse() {
+      const input = document.getElementById('jsonInput').value;
+      const result = parseJSON(input);
+      const outputDiv = document.getElementById('output');
+
+      if (result === "Invalid JSON format") {
+        outputDiv.style.color = "red";
+        outputDiv.textContent = result;
+      } else {
+        outputDiv.style.color = "green";
+        outputDiv.textContent = `Parsed JSON: ${JSON.stringify(result, null, 2)}`;
+      }
+    }
+  </script>
+</body>
+</html>
