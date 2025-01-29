@@ -172,45 +172,38 @@ textarea {
   </script>
   <br>
   <br>
-  
-<div class="container">
+    <div class="container">
     <h1>QUE 3</h1>
     <div class="image-container">
-    <img src="car3.jpg" id="image1" class="active">
-    <img src="car4.jpg" id="image2">
-    <img src="car5.jpg" id="image3">
-    <img src="car6.jpg" id="image4">
-    <img src="car7.jpg" id="image5">
-    
-    
-     
+        <img src="car3.jpg" id="image1" class="active">
+        <img src="car4.jpg" id="image2">
+        <img src="car5.jpg" id="image3">
+        <img src="car6.jpg" id="image4">
+        <img src="car7.jpg" id="image5">
     </div>
     <button id="prev" onclick="prev()"> &lt; </button>
     <button id="next" onclick="next()"> &gt; </button>
-    </div>
-    </body>
-    <script>
+</div>
+
+<script>
     const images = document.querySelectorAll(".image-container img");
     let i = 0; 
     let j = images.length; 
     
-    function next(){
-    document.getElementById("image" + (i+1)).style.display="none"
-    
-    i = ( j + i + 1) % j;
-      
-    document.getElementById("image" + (i+1)).style.display="block"
+    function next() {
+        images[i].style.display = "none";
+        i = (i + 1) % j;
+        images[i].style.display = "block";
     } 
     
-    function prev(){
-    document.getElementById("imaget" + (i+1)).style.display="none"
-    i = (j + i - 1) % j;
-     
-    document.getElementById("image" + (i+1)).style.display="block"
-    
+    function prev() {
+        images[i].style.display = "none"; 
+        i = (i - 1 + j) % j;
+        images[i].style.display = "block";
     }
-    
-    </script>
+    images[i].style.display = "block";
+</script>
+  
 <div class="input">
 <h1>QUE 4</h1>
   <p>Enter a JSON string below and click "Parse" to see the result:</p>
